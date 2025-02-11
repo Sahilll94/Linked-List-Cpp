@@ -6,8 +6,3 @@ A simple implementation of singly and doubly linked lists in C++ with basic oper
 - Doubly Linked List  
 - Insert, Delete, Search operations  
 - Display and Reverse traversal  
-
-## Getting Started  
-### Prerequisites  
-- C++ Compiler (G++/Clang/MSVC)  
-- Basic knowledge of C++  
