@@ -11,6 +11,9 @@ class Node
         Node (int val) : data(val),prev(NULL),next(NULL) {};
 };
 
+
+
+
 Node * insertAtBegin(Node *& head, Node*& tail, int val)
 {
     if(head==NULL && tail==NULL)
@@ -61,6 +64,38 @@ Node * insertAtTail(int val, Node *& head, Node *& tail)
     return head;
 }
 
+Node * insertAtPosition(int pos, int val, Node *& head, Node *& tail)
+{
+    if(head==NULL && tail==NULL)
+    {
+        Node * newNode = new Node(val);
+        head = tail = newNode;
+    }
+
+    if(pos<=1) return insertAtBegin(head,tail,val);
+
+    Node * curr = head;
+    int count = 1;
+
+    // 3
+
+    while(curr!=NULL && count < pos-1)
+    {
+        curr = curr -> next;
+        count++;
+    }
+
+    // if current pointer is at last linked list.
+    if(curr==tail) return insertAtTail(val,head,tail);
+
+    Node * newNode = new Node(val);
+    newNode -> prev = curr;
+    newNode -> next = curr->next;
+    curr -> next = newNode;
+    curr -> next -> prev = newNode;
+
+    return head;
+}
 
 void reversePrint(Node *& tail)
 {
@@ -86,11 +121,11 @@ int main()
     head = insertAtBegin(head,tail,30);
 
     printDLL(head);
-    // reversePrint(tail);
-    // cout<<endl;
 
     head = insertAtTail(40,head,tail);
     head = insertAtTail(50,head,tail);
+
+    head = insertAtPosition(4,60,head,tail);
 
     printDLL(head);
 
